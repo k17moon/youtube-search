@@ -1,0 +1,62 @@
+はじめに
+	Dockerを使用する場合と使用しない場合がある
+
+pip install
+	django
+	requests
+	beautifulsoup4
+	jsonfield
+
+Dockerを使用しない場合：
+django-admin startproject [PJ名] .
+python manage.py startapp [app名]
+
+pip install
+	django
+	google-api-python-client
+
+
+
+Dockerを使用する場合：
+Dockerfile
+requirement.txt
+docker-compose.yml
+（READ_setting.txt）
+の3つのファイルをプロジェクトディレクトリにコピー
+
+実行コマンド
+projectの開始：
+docker-compose run web django-admin startproject [PJ名] .
+
+appの開始：
+docker-compose run web python manage.py startapp [app名]
+
+compose関連：
+docker-compose up
+docker-compose up -d
+docker-compose up stop
+docker ps
+
+modelの作成関連：
+docker-compose run web python manage.py makemigrations
+docker-compose run web python manage.py migrate
+
+_____________________
+
+#BASE_DIRの変更
+#こっちにしないと BASE_DIR / 'templates' が実行できない
+
+from pathlib import Path
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+#データベースの変更点
+DATABASES = {
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'postgres',
+       'USER': 'postgres',
+       'PASSWORD': 'postgres',
+       'HOST': 'db',
+       'PORT': 5432,
+   }
+}

@@ -1,0 +1,12 @@
+{% extends 'base_login.html' %}
+
+{% block content %}
+
+
+<form method="POST">{% csrf_token %}
+    <p>タイトル：<input type="text" name="title"></p>
+    <p>メモ：<input type="text" name="memo"></p>
+    <p>検索キーワード：<input type="text" name="keyword"></p>
+    <input type="submit" value="create">
+</form>
+{% endblock content %}

@@ -1,0 +1,35 @@
+{% extends 'base_login.html' %}
+{% block content %}
+<p>詳細ページ</p>
+    <a href="{% url 'list' %}" class="btn btn-secondary mb-3" tabindex="-1" role="button" aria-disabled="true">一覧へ</a>
+<div class="alert alert-dark" role="alert">
+  詳細
+</div>
+
+<div class="alert alert-success" role="alert">
+  タイトル：{{ object.title }}
+</div>
+<div class="alert alert-success" role="alert">
+  メモ：{{ object.memo }}
+</div>
+    <p>検索キーワード：{{ object.keyword }}</p>
+    <p>検索結果</p>
+
+    {% for video in videos %}
+        <div class="alert alert-info" role="alert">
+          <h4 class="alert-heading">検索結果</h4>
+          <p>タイトル：{{ video.title }}</p>
+          <hr>
+           <iframe width="560" height="315"
+                src= {{ video.emb }}
+                frameborder="0" allowfullscreen>
+            </iframe>
+          <p class="mb-0"><a href="{{ video.url }}">{{ video.url }}</a></p>
+        </div>
+
+    {% endfor %}
+
+    <p>登録日：{{ object.register_date }}</p>
+    <p>最終更新日：{{ object.last_date }}</p>
+
+{% endblock content %}

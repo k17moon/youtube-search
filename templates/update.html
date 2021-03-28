@@ -1,0 +1,9 @@
+{% extends 'base_login.html' %}
+
+{% block content %}
+    <p>更新ページ</p>
+<form action ='' method="POST">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="update">
+</form>
+{% endblock content %}

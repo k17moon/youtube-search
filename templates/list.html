@@ -1,0 +1,31 @@
+{% extends 'base_login.html' %}
+
+{% block header %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Youtube検索リスト</h1>
+    <p class="lead">一覧ページ</p>
+  </div>
+</div>
+{% endblock header %}
+
+{% block content %}
+
+<div class="container">
+
+    <a href="{% url 'create' %}" class="btn btn-secondary mb-3" tabindex="-1" role="button" aria-disabled="true">新規作成</a>
+    <a href="{% url 'logout' %}">ログアウト</a>
+    {% for object in object_list %}
+        <div class="alert alert-primary" role="alert">
+        <p>{{ object.title }}</p>
+        <p>検索キーワード：{{ object.keyword }}</p>
+        <p>最終更新：{{ object.last_date | date:"o/m/d" }}</p>
+        <a href="{% url 'update' object.pk %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">編集</a>
+        <a href="{% url 'delete' object.pk %}" class="btn btn-success" tabindex="-1" role="button" aria-disabled="true">削除</a>
+        <a href="{% url 'detail' object.pk %}" class="btn btn-dark" tabindex="-1" role="button" aria-disabled="true">詳細</a>
+        </div>
+    {% endfor %}
+
+</div>
+
+{% endblock content %}
